@@ -34,7 +34,7 @@ d3.csv("assets/data/data.csv").then(function(stateData) {
     .range([0, width]);
 
   var yLinearScale = d3.scaleLinear()
-    .domain([25, d3.max(stateData, d => d.age)])
+    .domain([28, d3.max(stateData, d => d.age)])
     .range([height, 0]);
   
   var bottomAxis = d3.axisBottom(xLinearScale);
@@ -53,7 +53,7 @@ d3.csv("assets/data/data.csv").then(function(stateData) {
   .append("circle")
   .attr("cx", d => xLinearScale(d.poverty))
   .attr("cy", d => yLinearScale(d.age))
-  .attr("r", "12")
+  .attr("r", "15")
   .attr("fill", "darkgreen");
 
 
@@ -61,7 +61,7 @@ d3.csv("assets/data/data.csv").then(function(stateData) {
     .attr("class", "tooltip")
     .offset([80, -60])
     .html(function(d) {
-      return(`${d.state}<br>Poverty: ${d.poverty}<br>Age: ${d.age}`)
+      return(`${d.state}<br>In Poverty: ${d.poverty}%<br>Median Age: ${d.age}`)
     });
   
     chartGroup.call(toolTip);
